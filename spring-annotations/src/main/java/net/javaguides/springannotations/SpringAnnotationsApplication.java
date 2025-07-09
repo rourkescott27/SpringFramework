@@ -9,7 +9,7 @@ public class SpringAnnotationsApplication {
 
     public static void main ( String[] args ) {
         var context = SpringApplication.run(SpringAnnotationsApplication.class, args);
-        PizzaController pizzaController = (PizzaController) context.getBean("pizzaDemo");
+        PizzaController pizzaController = (PizzaController) context.getBean("pizzaController");
         System.out.println(pizzaController.getPizza());
     }
 
