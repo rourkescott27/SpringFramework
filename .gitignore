@@ -1,6 +1,7 @@
 # === Maven build ===
 /target/
-.mvn/wrapper/maven-wrapper.log
+.mvn/wrapper/
+!/.mvn/wrapper/maven-wrapper.jar
 
 # === Java compiled files ===
 *.class
@@ -24,6 +25,7 @@ HELP.md
 .idea/
 *.iws
 *.ipr
+out/
 shelf/
 workspace.xml
 httpRequests/
@@ -46,7 +48,6 @@ dataSources.local.xml
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
 
 # === Visual Studio Code ===
 .vscode/
