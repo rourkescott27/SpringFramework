@@ -2,6 +2,7 @@ package net.javaguides.springannotations;
 
 import net.javaguides.springannotations.controller.MyController;
 import net.javaguides.springannotations.controller.PizzaController;
+import net.javaguides.springannotations.lazy.LazyLoader;
 import net.javaguides.springannotations.repository.MyRepository;
 import net.javaguides.springannotations.service.MyService;
 import net.javaguides.springannotations.service.VegPizza;
@@ -24,6 +25,9 @@ public class SpringAnnotationsApplication {
 
         MyRepository myRepository = context.getBean(MyRepository.class);
         System.out.println(myRepository.hello());
+
+        LazyLoader lazyLoader = context.getBean(LazyLoader.class);
+
 //        VegPizza vegPizza = (VegPizza) context.getBean("vegPizza");
 //        System.out.println(vegPizza.getPizza());
     }

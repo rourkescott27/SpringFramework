@@ -6,11 +6,13 @@ import net.javaguides.springannotations.service.Pizza;
 import net.javaguides.springannotations.service.VegPizza;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 
 @Configuration
 public class AppConfig {
 
     @Bean
+    @Lazy
     public Pizza vegPizza () {
         return new VegPizza();
     }
