@@ -1,6 +1,6 @@
 # SPRING ANNOTATIONS OVERVIEW
 
-## @Component
+## `@Component`
 
 - Tells Spring to create and manage an object of this class automatically.
 - Spring keeps track of it in the application context so it can be reused anywhere.
@@ -12,7 +12,7 @@
 
 ------------------------------------------------------------------------------------------------------------------------
 
-## @Autowired
+## `@Autowired`
 
 - Tells Spring to automatically connect and inject the required dependencies (objects) into this class.
 - Helps avoid manual object creation and wiring.
@@ -26,21 +26,21 @@
 
 ------------------------------------------------------------------------------------------------------------------------
 
-## @Qualifier
+## `@Qualifier`
 
 - Used when there are multiple beans of the same type.
 - Use `@Qualifier` to specify which Pizza bean to inject when multiple implementations exist
 
 ------------------------------------------------------------------------------------------------------------------------
 
-## @Primary
+## `@Primary`
 
 - Marks one bean as the default choice when there are multiple candidates.
 - Spring injects this bean unless another is specifically selected.
 
 ------------------------------------------------------------------------------------------------------------------------
 
-## @Bean
+## `@Bean`
 
 #### What is it?
 
@@ -87,7 +87,7 @@
 
 ------------------------------------------------------------------------------------------------------------------------
 
-## Stereotype Annotations - @Controller, @Repository, @ Service
+## Stereotype Annotations - `@Controller`, `@Repository`, `@ Service`
 
 - These annotations are all specializations of `@Component`, meaning:
     - They are all Spring-managed components, but each serves a specific purpose based on where it’s used in the
@@ -101,7 +101,7 @@
 | `@Service`	   | Service (Business) Layer | Contains business logic         |
 | `@Repository` | Persistence (DAO) Layer  | Manages data access logic       |
 
-### @Controller
+### `@Controller`
 
 - Belongs to: Presentation Layer
 - Purpose: Handles incoming HTTP requests and maps them to handler methods.
@@ -111,7 +111,7 @@
     - Works with Spring MVC.
     - Returns view templates (e.g., Thymeleaf) unless `@ResponseBody` or `@RestController` is used.
 
-### @Service
+### `@Service`
 
 - Belongs to: Service (Business Logic) Layer
 
@@ -122,7 +122,7 @@
 - Extra Behavior:
     - Can be picked up by Spring AOP for things like transactions, logging, security, etc.
 
-### @Repository
+### `@Repository`
 
 - Belongs to: Persistence (DAO) Layer
 
@@ -140,7 +140,7 @@
 
 ------------------------------------------------------------------------------------------------------------------------
 
-## @Lazy
+## `@Lazy`
 
 #### What is `@Lazy`?
 
@@ -172,7 +172,7 @@
 
 ------------------------------------------------------------------------------------------------------------------------
 
-## @ConfigurationProperties
+## `@ConfigurationProperties`
 
 #### What is `@ConfigurationProperties`?
 
@@ -209,9 +209,9 @@
 
 ------------------------------------------------------------------------------------------------------------------------
 
-## @Controller Annotation in Spring MVC
+## `@Controller` Annotation in Spring MVC
 
-#### What is @Controller?
+#### What is `@Controller`?
 
 - `@Controller` is a Spring MVC annotation used to define a class as a web controller that can handle HTTP requests.
 - It's part of the presentation layer of a Spring Boot application.
@@ -222,7 +222,7 @@
 - Within a `@Controller` class, you define handler methods — these are methods that respond to specific HTTP requests.
 - The most basic handler method uses `@RequestMapping`.
 
-#### @RequestMapping
+#### `@RequestMapping`
 
 - `@RequestMapping` is used to map HTTP requests to specific controller methods.
 - It can map based on:
@@ -260,3 +260,69 @@ return "Hello, world!";
 | `@RequestMapping` | Maps HTTP requests to specific methods                            |
 | `@ResponseBody`   | Sends the return value directly as the HTTP response (e.g., JSON) |
 
+------------------------------------------------------------------------------------------------------------------------
+
+## `@RestController` vs `@Controller` in Spring
+
+#### Core Concept
+
+- Spring provides two main annotations for handling web requests:
+    - `@Controller`: Used for traditional MVC web applications that return HTML views.
+    - `@RestController`: Used for building RESTful APIs that return data (like JSON or XML) directly in the HTTP
+      response.
+
+#### What is `@RestController`?
+
+- `@RestController` is a specialized version of `@Controller`.
+- It combines `@Controller` & `@ResponseBody`
+- This means all handler methods in a @RestController automatically return their result as the HTTP response body (not
+  as a view name).
+- It is designed for RESTful services rather than rendering pages.
+
+#### Key Differences:
+
+| Feature                | `@Controller`                           | `@RestController`                       |
+|------------------------|-----------------------------------------|-----------------------------------------|
+| Purpose                | MVC web app (HTML views)                | REST API (JSON/XML responses)           |
+| Returns                | View names (e.g., "home")               | Data (e.g., User, List<User>)           |
+| Needs `@ResponseBody`? | Yes (on each method)                    | No (it's applied automatically)         |
+| Use Case               | Server-side rendered UI                 | Backend APIs or services                |
+| Works with             | Thymeleaf, JSP, etc. (template engines) | API clients like Postman, frontend apps |
+
+#### Usage Examples
+
+- `@Controller` — Returning a View
+
+```@Controller
+public class HomeController {
+
+    @GetMapping("/home")
+    public String homePage() {
+        return "home"; // Renders home.html (view)
+    }
+}
+```
+
+- `@RestController` — Returning JSON Data
+
+```@RestController
+public class UserApi {
+
+    @GetMapping("/users")
+    public List<String> getUsers() {
+        return List.of("Alice", "Bob"); // Returned as JSON
+    }
+}
+```
+
+#### Summary:
+
+- `@Controller` is used when building web applications with views.
+- `@RestController` is used when building RESTful APIs that return data directly.
+- Both are part of Spring Web MVC, but serve different roles:
+    - `@Controller` = View-based MVC
+    - `@RestController` = RESTful MVC
+
+Use `@RestController` when the goal is to expose backend services to other applications or frontend clients.
+
+------------------------------------------------------------------------------------------------------------------------
