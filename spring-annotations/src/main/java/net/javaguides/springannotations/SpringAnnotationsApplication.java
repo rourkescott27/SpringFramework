@@ -1,5 +1,7 @@
 package net.javaguides.springannotations;
 
+import net.javaguides.springannotations.configurationProperties.AppProperties;
+import net.javaguides.springannotations.configurationProperties.AppPropertiesDemo;
 import net.javaguides.springannotations.controller.MyController;
 import net.javaguides.springannotations.controller.PizzaController;
 import net.javaguides.springannotations.lazy.LazyLoader;
@@ -30,6 +32,9 @@ public class SpringAnnotationsApplication {
 
 //        VegPizza vegPizza = (VegPizza) context.getBean("vegPizza");
 //        System.out.println(vegPizza.getPizza());
+
+        AppPropertiesDemo appPropertiesDemo = context.getBean(AppPropertiesDemo.class);
+        appPropertiesDemo.display();
     }
 
 }
