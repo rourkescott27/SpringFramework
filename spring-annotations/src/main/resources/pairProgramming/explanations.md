@@ -42,12 +42,12 @@
 
 ## @Bean
 
-### What is it?
+#### What is it?
 
 - `@Bean` is used in Java-based configuration to manually define and register a bean in the Spring container.
 - It goes inside a class annotated with `@Configuration`.
 
-### Bean Naming
+#### Bean Naming
 
 - By default, the name of the bean is the method name where `@Bean` is applied.
 - You can customize the name using the name attribute: `@Bean(name = "myCustomBean")`
@@ -136,3 +136,37 @@
 
 - @Controller → @Service → @Repository → Database
 - Each layer depends only on the one below it, promoting separation of concerns and testability.
+
+------------------------------------------------------------------------------------------------------------------------
+
+## @Lazy
+
+#### What is @Lazy?
+
+    - @Lazy tells Spring to delay the creation of a bean until it’s actually needed (on-demand).
+    - By default, Spring creates singleton beans eagerly — meaning at application startup.
+    - With @Lazy, the bean is only created when it is injected, accessed, or requested.
+
+#### Why Use It?
+
+    - Speeds up application startup by skipping the creation of unused beans.
+    - Reduces memory usage if some beans are rarely used or expensive to create.
+    - Can help resolve circular dependencies in some cases.
+    - Eager initialization is generally recommended for fail-fast behavior (you find errors early).
+
+#### Where You Can Use @Lazy: 
+
+| Usage Location                              | Behavior                         |
+|---------------------------------------------|----------------------------------|
+| On a @Component class                       | That component is created lazily |
+| On a dependency injection (@Autowired)      | That specific injection is lazy  |
+| On a @Bean method in a @Configuration class | Only that method's bean is lazy  |
+| On an entire @Configuration class           | All beans in that class are lazy |
+
+#### Summary:
+
+    - Use @Lazy when startup performance matters, or when beans are rarely used or expensive to initialize.
+    - Eager (default) -> Bean is created at application startup.
+    - Lazy (@Lazy)    -> Bean is created only when it’s first accessed or injected.
+
+------------------------------------------------------------------------------------------------------------------------
