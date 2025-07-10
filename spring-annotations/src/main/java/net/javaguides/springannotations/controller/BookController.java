@@ -37,4 +37,15 @@ public class BookController {
 
         return new ResponseEntity<>(book, HttpStatus.CREATED);
     }
-} 
+
+
+    // http:localhost:8080/api/books/update/1
+    @PutMapping(value = "/books/update/{id}")
+    public ResponseEntity<Book> updateBook ( @PathVariable int id, @RequestBody Book updatedBook ) {
+        System.out.println(id);
+        System.out.println(updatedBook.getTitle());
+        System.out.println(updatedBook.getDescription());
+        updatedBook.setId(id);
+        return ResponseEntity.ok(updatedBook);
+    }
+}
