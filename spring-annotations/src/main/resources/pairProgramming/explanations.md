@@ -143,18 +143,18 @@
 
 #### What is @Lazy?
 
-    - @Lazy tells Spring to delay the creation of a bean until it’s actually needed (on-demand).
-    - By default, Spring creates singleton beans eagerly — meaning at application startup.
-    - With @Lazy, the bean is only created when it is injected, accessed, or requested.
+- @Lazy tells Spring to delay the creation of a bean until it’s actually needed (on-demand).
+- By default, Spring creates singleton beans eagerly — meaning at application startup.
+- With @Lazy, the bean is only created when it is injected, accessed, or requested.
 
 #### Why Use It?
 
-    - Speeds up application startup by skipping the creation of unused beans.
-    - Reduces memory usage if some beans are rarely used or expensive to create.
-    - Can help resolve circular dependencies in some cases.
-    - Eager initialization is generally recommended for fail-fast behavior (you find errors early).
+- Speeds up application startup by skipping the creation of unused beans.
+- Reduces memory usage if some beans are rarely used or expensive to create.
+- Can help resolve circular dependencies in some cases.
+- Eager initialization is generally recommended for fail-fast behavior (you find errors early).
 
-#### Where You Can Use @Lazy: 
+#### Where You Can Use @Lazy:
 
 | Usage Location                              | Behavior                         |
 |---------------------------------------------|----------------------------------|
@@ -165,8 +165,45 @@
 
 #### Summary:
 
-    - Use @Lazy when startup performance matters, or when beans are rarely used or expensive to initialize.
-    - Eager (default) -> Bean is created at application startup.
-    - Lazy (@Lazy)    -> Bean is created only when it’s first accessed or injected.
+- Use @Lazy when startup performance matters, or when beans are rarely used or expensive to initialize.
+- Eager (default) -> Bean is created at application startup.
+- Lazy (@Lazy)    -> Bean is created only when it’s first accessed or injected.
+
+------------------------------------------------------------------------------------------------------------------------
+
+## @ConfigurationProperties
+
+### What is @ConfigurationProperties?
+
+- @ConfigurationProperties is used to bind external configuration (like values from application.properties or
+  application.yml) to a Java object.
+- It enables type-safe and structured access to configuration values, allowing developers to group related settings into
+  dedicated config classes rather than scattering them throughout the code using individual @Value annotations.
+
+### Why Use It?
+
+- ***Type Safety:*** Automatically converts property values to the correct Java types (e.g., String, int, List, Map,
+  etc.).
+- ***Cleaner Code:*** Encapsulates related config settings in one class instead of spreading them across multiple fields
+  or components.
+- ***Supports Complex Structures:*** Works well with nested objects, collections, and maps — great for real-world
+  applications with layered configuration.
+- ***Validation Support:*** Can be combined with @Validated to enforce constraints (e.g., not null, size limits).
+
+### How It Works Conceptually
+
+- When you annotate a class with @ConfigurationProperties("prefix"), Spring will:
+    - Look for configuration keys in the environment (typically application.properties or application.yml) that begin
+      with the given prefix.
+    - Match the remaining key paths to fields in the class, using naming conventions (e.g., kebab-case config matches
+      camelCase fields).
+    - Instantiate the class as a Spring-managed bean and populate its fields with the matched values.
+
+### Types of Properties It Supports
+
+- ***Top-Level Properties:*** Basic key-value pairs (e.g., app.name, server.port).
+- ***Nested Properties:*** Hierarchical configuration mapped to inner objects or nested field structures.
+- ***Map Properties:*** Dynamically structured key-value pairs stored in a Map<K, V>.
+- ***List/Array Properties:*** Collections of values bound to Java lists or arrays.
 
 ------------------------------------------------------------------------------------------------------------------------
