@@ -326,3 +326,122 @@ public class UserApi {
 Use `@RestController` when the goal is to expose backend services to other applications or frontend clients.
 
 ------------------------------------------------------------------------------------------------------------------------
+
+## HTTP Request Handling Annotations (Spring MVC / REST)
+
+___Spring provides a set of annotations to map HTTP requests to controller methods in both Spring Web MVC and Spring
+REST
+APIs.___
+
+#### `@RequestMapping`
+
+___Base annotation for mapping web requests to controller classes or methods.___
+
+- Can be applied at both:
+    - Class level: sets a base URI
+    - Method level: sets specific endpoint paths or behavior
+
+##### Features:
+
+- Supports multiple HTTP methods (`GET, POST, PUT, DELETE,` etc.).
+- Allows mapping multiple URIs to the same method.
+- Optional attributes:
+    - method → defines the HTTP verb
+    - produces → sets response content type (e.g. application/json)
+    - consumes → sets accepted request body type
+- If method isn’t specified, it defaults to `GET`.
+
+___Other mapping annotations like `@GetMapping`,` @PostMapping`, etc. are specialized shortcuts of `@RequestMapping`.___
+
+#### `@GetMapping`
+
+- Shortcut for `@RequestMapping(method = RequestMethod.GET)`.
+- Used to fetch resources.
+- Often returns data (JSON) or views (HTML), depending on `@Controller` vs `@RestController`.
+
+#### `@PostMapping`
+
+- Shortcut for `@RequestMapping(method = RequestMethod.POST)`.
+- Used to send data to the server, often as JSON.
+- Common in REST APIs for creating new resources.
+- Often paired with `@RequestBody` to map JSON input to a Java object.
+
+#### `@RequestBody`
+
+- Binds the incoming request body (usually JSON) to a Java object.
+- Automatically handled by Spring using message converters.
+- Commonly used with `@PostMapping` & `@PutMapping`.
+
+##### Example:
+
+```@PostMapping("/users")
+public ResponseEntity<User> createUser(@RequestBody User user) {
+// user object populated from request body
+}
+```
+
+#### Custom HTTP Responses
+
+___Two main options to return HTTP status or full response structure:___
+
+##### `@ResponseStatus`
+
+- Sets a static HTTP status on a method or exception.
+- Simple, but not flexible.
+
+##### `ResponseEntity<T>`
+
+- Full control of response:
+    - Status code
+    - Headers
+    - Body
+- Recommended for dynamic or more advanced responses.
+
+##### Example:
+
+`return new ResponseEntity<>(user, HttpStatus.CREATED);`
+
+#### `@PutMapping`
+
+- Shortcut for `@RequestMapping(method = RequestMethod.PUT)`.
+- Used to update existing resources.
+- Common usage:
+    - `@PathVariable`: to bind the resource ID from the URL
+    - `@RequestBody`: to bind the updated data from the request body
+
+##### Example:
+
+```@PutMapping("/users/{id}")
+public User updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
+// update logic
+}
+```
+
+#### `@DeleteMapping`
+
+- Shortcut for `@RequestMapping(method = RequestMethod.DELETE)`.
+- Used to delete a resource by ID or other identifier.
+- Often paired with `@PathVariable`.
+
+##### Example:
+
+`@DeleteMapping("/users/{id}")
+public void deleteUser(@PathVariable Long id) {
+// deletion logic
+}
+`
+
+##### Summary: 
+
+|  Annotation        | Purpose                        | Common Use                  |
+|--------------------|--------------------------------|-----------------------------|
+| `@RequestMapping`  | Base for all mappings          | Multi-purpose, flexible     |
+| `@GetMapping`      | Read/fetch data                | Retrieve resources          |
+| `@PostMapping`     | Create data                    | Send JSON data to the server|
+| `@PutMapping`      | Update data                    | Modify an existing resource |
+| `@DeleteMapping`   | Delete data                    | Remove resource by ID       |
+| `@RequestBody`     | Convert request JSON to object | Input payload (POST/PUT)    |
+| `@PathVariable`    | Bind URL segment to method arg | Resource IDs                |
+| `ResponseEntity`   | Custom HTTP response           | Status codes, headers, body |
+
+------------------------------------------------------------------------------------------------------------------------
