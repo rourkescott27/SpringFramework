@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>sia</groupId>
-    <artifactId>taco-cloud-chap01</artifactId>
+    <artifactId>chapter01</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>taco-cloud-chap01</name>
     <description>taco-cloud-chap01</description>
