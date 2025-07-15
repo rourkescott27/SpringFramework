@@ -31,16 +31,16 @@ public class Application {
         return factory.createClient(UserHttpClient.class);
     }
 
-
-    @Bean
-    CommandLineRunner runner ( UserRestClient client ) {
-        return args -> {
-            List<User> users = client.findAll();
-            System.out.println(users);
-
-            User user = client.findById(1);
-            System.out.println(user);
-        };
-    }
+// CAUSES ERRORS WHEN TESTING JdbcClientRunRepositoryTest
+//    @Bean
+//    CommandLineRunner runner ( UserRestClient client ) {
+//        return args -> {
+//            List<User> users = client.findAll();
+//            System.out.println(users);
+//
+//            User user = client.findById(1);
+//            System.out.println(user);
+//        };
+//    }
 
 }
