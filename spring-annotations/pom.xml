@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>net.javaguides</groupId>
-    <artifactId>spring-annotations</artifactId>
+    <artifactId>project1</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-annotations</name>
     <description>spring-annotations</description>
