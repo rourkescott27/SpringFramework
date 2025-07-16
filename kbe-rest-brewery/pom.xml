@@ -99,7 +99,7 @@
                     <verbose>true</verbose>
                     <images>
                         <image>
-                            <name>kbe-rest</name>
+                            <name>kbe-rest/${project.artifactId}</name>
                             <build>
                                 <assembly>
                                     <descriptorRef>artifact</descriptorRef>
@@ -107,6 +107,7 @@
                                 <dockerFileDir>${project.basedir}/src/main/docker</dockerFileDir>
                                 <tags>
                                     <tag>latest</tag>
+                                    <tag>${project.version}</tag>
                                 </tags>
                             </build>
                         </image>
