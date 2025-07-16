@@ -1,6 +1,6 @@
 FROM eclipse-temurin:17-jre AS builder
 WORKDIR /application
-ADD target/project5-0.0.1-SNAPSHOT.jar ./
+ADD maven/project5-0.0.1-SNAPSHOT.jar ./
 RUN java -Djarmode=layertools -jar project5-0.0.1-SNAPSHOT.jar extract
 
 FROM eclipse-temurin:17-jre
