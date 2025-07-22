@@ -1,6 +1,6 @@
 ## 📦 About This Project
 
-This repository contains source code provided as part of the **"Building Spring Boot Docker Images"** course
+This folder contains source code provided as part of the **"Building Spring Boot Docker Images"** course
 on [Udemy](https://www.udemy.com/course/kube-by-example-building-spring-boot-docker-images/learn/lecture/31942384#learning-tools),
 which I’m currently following for learning purposes.
 
