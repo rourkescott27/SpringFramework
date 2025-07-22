@@ -67,3 +67,7 @@ Thumbs.db
 
 # === Mobile Tools for Java (J2ME) ===
 .mtj.tmp/
+
+# === Ignore any Maven local repo folders used by Docker ===
+**/.m2/
+
