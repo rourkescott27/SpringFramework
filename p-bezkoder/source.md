@@ -2,7 +2,7 @@
 
 This folder contains source code used as part of the **"Docker Compose: Spring Boot and Postgres Example"** tutorial
 by
-[Bezkoder](https://www.bezkoder.com/docker-compose-spring-boot-postgres/), which I’m currently following for learning
+[Bezkoder](https://www.bezkoder.com/docker-compose-spring-boot-postgres/), which I’m following for learning
 purposes.
 
 ### 🧾 Attribution
