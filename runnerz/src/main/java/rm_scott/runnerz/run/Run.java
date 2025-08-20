@@ -8,7 +8,7 @@ import org.springframework.data.annotation.Version;
 import java.time.LocalDateTime;
 
 public record Run(
-//        @Id
+        @Id
         Integer id,
         @NotEmpty
         String title,
